@@ -104,5 +104,31 @@ export async function processText(inputText, templateId) {
   }
 }
 
+export async function base64Encode(text) {
+  await ensureLoaded();
+  if (typeof window.goBase64Encode === 'function') {
+    return window.goBase64Encode(text);
+  } else {
+    console.error('goBase64Encode function not found on window object.');
+    throw new Error('goBase64Encode is not available');
+  }
+}
+
+export async function base64Decode(text) {
+  await ensureLoaded();
+  if (typeof window.goBase64Decode === 'function') {
+    const result = window.goBase64Decode(text);
+    // The Go function returns an object like { error: "message" } on failure,
+    // or the decoded string on success.
+    if (result && typeof result === 'object' && result.error !== undefined) {
+      throw new Error(result.error);
+    }
+    return result; // This will be the decoded string
+  } else {
+    console.error('goBase64Decode function not found on window object.');
+    throw new Error('goBase64Decode is not available');
+  }
+}
+
 // Optionally, provide a direct way to call loadWasm if needed for early initialization
 export { loadWasm };
