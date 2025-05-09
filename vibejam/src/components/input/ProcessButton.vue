@@ -7,8 +7,8 @@
     block
     @click="$emit('process-text')"
   >
-    <v-icon left>mdi-rocket-launch-outline</v-icon>
-    Transform Text
+    <v-icon left>mdi-magic-staff</v-icon>
+    Do Magic
   </v-btn>
 </template>
 

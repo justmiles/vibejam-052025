@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>VibeJam LLM Transformer</v-toolbar-title>
+      <v-toolbar-title>VibeJam LLM Magic Button</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
 

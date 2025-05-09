@@ -124,8 +124,11 @@ export async function generateText(initialPrompt) {
       // We could add stop sequences for TOOL_CALL if needed, but parsing should handle it
     });
 
+    // Log the full response object from the LLM
+    console.log("[llmService] Full LLM API Response object:", JSON.parse(JSON.stringify(llmResponseChunk))); // Deep copy for clean logging
+
     const llmResponseText = llmResponseChunk.choices[0].message.content;
-    console.log("[llmService] LLM raw response:", llmResponseText);
+    console.log("[llmService] Extracted LLM response content:", llmResponseText);
     messages.push({ role: "assistant", content: llmResponseText }); // Add LLM's full response to history
 
     const toolCallAttempt = parseToolCall(llmResponseText);
